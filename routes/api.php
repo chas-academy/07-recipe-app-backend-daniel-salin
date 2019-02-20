@@ -26,13 +26,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 |
 */
 
-// Get all lists
-Route::get('lists', 'RecipeListController@index');
-// Get single lists
-Route::get('list/{id}', 'RecipeListController@show');
-// Create new list
-Route::post('list', 'RecipeListController@create');
-// Update list
-Route::put('lists', 'RecipeListController@update');
-// Delete list
-Route::delete('list/{id}', 'RecipeListController@destroy');
+Route::resource('lists', 'RecipeListController');
+
+Route::get(
+    'lists/{list}/relationships/user',
+    [
+        'uses' => RecipeListRelationshipController::class . '@user',
+        'as' => 'lists.relationships.user'
+    ]
+);
+
+Route::get(
+    'lists/{list}/user',
+    [
+        'uses' => RecipeListRelationshipController::class . '@user',
+        'as' => 'lists.user'
+    ]
+);

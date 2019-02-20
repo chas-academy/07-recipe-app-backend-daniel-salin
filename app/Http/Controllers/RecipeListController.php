@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\RecipeList;
+use App\Http\Resources\RecipeListResource;
+use App\Http\Resources\RecipeListsResource;
 use Illuminate\Http\Request;
 
 class RecipeListController extends Controller
@@ -14,7 +16,8 @@ class RecipeListController extends Controller
      */
     public function index()
     {
-        //
+        $recipeLists = RecipeList::paginate(5);
+        return RecipeListResource::collection($recipeLists);
     }
 
     /**
@@ -41,12 +44,12 @@ class RecipeListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RecipeList  $recipeList
      * @return \Illuminate\Http\Response
      */
-    public function show(RecipeList $recipeList)
+    public function show($id)
     {
-        //
+        $recipeList = RecipeList::findOrFail($id);
+        return new RecipeListResource($recipeList);
     }
 
     /**
