@@ -1,4 +1,4 @@
-<?php
+1<?php
 
 use Illuminate\Http\Request;
 
@@ -15,9 +15,9 @@ use Illuminate\Http\Request;
 
 Route::group([
     'middleware' => 'api',
-    'prefix' => 'auth'
 ], function ($router) {
     Route::post('login', 'AuthController@login');
+    Route::post('register', 'AuthController@register');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
@@ -32,8 +32,29 @@ Route::group([
 |
 */
 
+// Fetch all lists
 Route::resource('lists', 'RecipeListController');
 
+// Fetch Single List
+Route::get(
+    'list/{list}',
+    [
+        'uses' => RecipeListController::class . '@show',
+        'as' => 'list'
+    ]
+);
+
+// Create new List
+Route::post(
+    'list',
+    [
+        'uses' => RecipeListController::class . '@create',
+        'as' => 'lists.user'
+    ]
+);
+
+
+// User and user relationship 
 Route::get(
     'lists/{list}/relationships/user',
     [
@@ -49,3 +70,8 @@ Route::get(
         'as' => 'lists.user'
     ]
 );
+
+
+
+
+
