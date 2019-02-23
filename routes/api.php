@@ -39,8 +39,17 @@ Route::resource('lists', 'RecipeListController');
 Route::get(
     'list/{list}',
     [
-        'uses' => RecipeListController::class . '@show',
+        'uses' => RecipeListController::class . '@showList',
         'as' => 'list'
+    ]
+);
+
+// Fetch User List
+Route::get(
+    'user/{user}/lists',
+    [
+        'uses' => RecipeListController::class . '@showUserList',
+        'as' => 'user.lists.show'
     ]
 );
 
@@ -49,14 +58,32 @@ Route::post(
     'list',
     [
         'uses' => RecipeListController::class . '@create',
-        'as' => 'lists.user'
+        'as' => 'lists.create'
+    ]
+);
+
+// Delete List
+Route::delete(
+    'list/{list}',
+    [
+        'uses' => RecipeListController::class . '@destroy',
+        'as' => 'lists.destroy'
+    ]
+);
+
+// Update List
+Route::put(
+    'list/{list}',
+    [
+        'uses' => RecipeListController::class . '@update',
+        'as' => 'lists.update'
     ]
 );
 
 
 // User and user relationship 
 Route::get(
-    'lists/{list}/relationships/user',
+    'list/{list}/relationships/user',
     [
         'uses' => RecipeListRelationshipController::class . '@user',
         'as' => 'lists.relationships.user'
@@ -64,7 +91,7 @@ Route::get(
 );
 
 Route::get(
-    'lists/{list}/user',
+    'list/{list}/user',
     [
         'uses' => RecipeListRelationshipController::class . '@user',
         'as' => 'lists.user'

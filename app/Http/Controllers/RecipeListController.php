@@ -33,14 +33,25 @@ class RecipeListController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified list resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showList($id)
     {
         $recipeList = RecipeList::findOrFail($id);
         return new RecipeListResource($recipeList);
+    }
+
+    /**
+     * Display the specified lists belonging to user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showUserList($id)
+    {
+        $recipeLists = RecipeList::where('user_id', $id)->get();
+        return RecipeListResource::collection($recipeLists);
     }
 
     /**
@@ -50,9 +61,13 @@ class RecipeListController extends Controller
      * @param  \App\RecipeList  $recipeList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RecipeList $recipeList)
+    public function update(Request $request, $id)
     {
-        //
+        $recipeList = RecipeList::findOrFail($id);
+        $recipeList->title = $request->input('title');
+        $recipeList->recipes = $request->input('recipes');
+        $recipeList->save();
+        return new RecipeListResource($recipeList);
     }
 
     /**
@@ -61,8 +76,10 @@ class RecipeListController extends Controller
      * @param  \App\RecipeList  $recipeList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RecipeList $recipeList)
+    public function destroy($id)
     {
-        //
+        $recipeList = RecipeList::findOrFail($id);
+        $recipeList->delete();
+        return new RecipeListResource($recipeList);
     }
 }

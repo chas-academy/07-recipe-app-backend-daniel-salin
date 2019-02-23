@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\RecipeList;
 
 class RecipeListResource extends JsonResource
 {
@@ -19,7 +20,7 @@ class RecipeListResource extends JsonResource
             'id' => $this->id,
             'attributes' => [
                 'title' => $this->title,
-                'recipes' => unserialize($this->recipes)
+                'recipes' => $request->recipes
             ],
             'relationships' => new RecipeListRelationshipResource($this),
             'links' => [
@@ -27,5 +28,4 @@ class RecipeListResource extends JsonResource
             ]
         ];
     }
-
 }
