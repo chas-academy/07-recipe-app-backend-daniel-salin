@@ -20,7 +20,7 @@ class RecipeListResource extends JsonResource
             'id' => $this->id,
             'attributes' => [
                 'title' => $this->title,
-                'recipes' => $request->recipes
+                'recipes' => $this->recipes
             ],
             'relationships' => new RecipeListRelationshipResource($this),
             'links' => [

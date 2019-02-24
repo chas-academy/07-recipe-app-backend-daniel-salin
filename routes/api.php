@@ -71,7 +71,7 @@ Route::delete(
     ]
 );
 
-// Update List
+// Update List (with new recipes)
 Route::put(
     'list/{list}',
     [
@@ -79,7 +79,6 @@ Route::put(
         'as' => 'lists.update'
     ]
 );
-
 
 // User and user relationship 
 Route::get(
