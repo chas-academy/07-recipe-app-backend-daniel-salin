@@ -1,3 +1,9 @@
+<h1>u07-recipe-app-backend/frontend - Daniel Salin</h1>
+
+Live version of frontend available at: <a href="http://recipe-app.danielsalin.chas.academy/">http://recipe-app.danielsalin.chas.academy/</a>
+Live version of backend available at: <a href="http://recipe-api.danielsalin.chas.academy/">http://recipe-app.danielsalin.chas.academy/ </a>
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">

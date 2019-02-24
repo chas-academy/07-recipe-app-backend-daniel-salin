@@ -21,8 +21,8 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
+    
 });
-
 /*
 |--------------------------------------------------------------------------
 | API Routes For Lists
@@ -31,6 +31,8 @@ Route::group([
 | API routes for CRUD operations on Recipe List
 |
 */
+
+
 
 // Fetch all lists
 Route::resource('lists', 'RecipeListController');
@@ -42,7 +44,7 @@ Route::get(
         'uses' => RecipeListController::class . '@showList',
         'as' => 'list'
     ]
-);
+    );
 
 // Fetch User List
 Route::get(
@@ -51,7 +53,7 @@ Route::get(
         'uses' => RecipeListController::class . '@showUserList',
         'as' => 'user.lists.show'
     ]
-);
+    );
 
 // Create new List
 Route::post(
@@ -60,7 +62,7 @@ Route::post(
         'uses' => RecipeListController::class . '@create',
         'as' => 'lists.create'
     ]
-);
+    );
 
 // Delete List
 Route::delete(
@@ -69,7 +71,7 @@ Route::delete(
         'uses' => RecipeListController::class . '@destroy',
         'as' => 'lists.destroy'
     ]
-);
+    );
 
 // Update List (with new recipes)
 Route::put(
@@ -87,7 +89,7 @@ Route::get(
         'uses' => RecipeListRelationshipController::class . '@user',
         'as' => 'lists.relationships.user'
     ]
-);
+    );
 
 Route::get(
     'list/{list}/user',
@@ -95,9 +97,4 @@ Route::get(
         'uses' => RecipeListRelationshipController::class . '@user',
         'as' => 'lists.user'
     ]
-);
-
-
-
-
-
+    );
